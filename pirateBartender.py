@@ -24,110 +24,35 @@ ingredients = {
     "magic": ["fairy dust", "widow's tears", "sun-dropped petal"]
 }
 
-print ("What will you be having?")
+#print ("What will you be having?")
 
 def askQuestions():
-    customerDrink = {}
-    #print ("What will you be having?")  #why doesn't this automatically pop up? #how do you check when it just processes it ?
+    customerPreference = {}
+    print ("What will you be having?")  #why doesn't this automatically pop up? #how do you check when it just processes it ?
     
-   # for customerDrink in questions:  --doesn't work... but why? -- 
-    bartenderQuestion1 = input(questions['strong'])
-    if bartenderQuestion1[0] == 'y' or bartenderQuestion1[0] == 'Y':
-        customerDrink['strong'] = True
-    else:
-    	customerDrink['strong'] = False
-    	
-    bartenderQuestion2 = str(input(questions['salty']))
-    if bartenderQuestion2[0] == 'y' or bartenderQuestion2[0] == 'Y':
-        customerDrink['salty'] = True
-    else:
-        customerDrink['salty'] = False
-    	
-    bartenderQuestion3 = str(input(questions['bitter']))
-    if bartenderQuestion3[0] == 'y' or bartenderQuestion3[0] == 'Y':
-        customerDrink['bitter'] = True
-    else:
-        customerDrink['bitter'] = False
+    for customerDrink in questions: 
+        # print (customerDrink)
+        # print(questions[customerDrink])
+        answer = input(questions[customerDrink]) 
+        if answer in ["y", "Y", "yes", "Yes"]:
+            customerPreference[customerDrink] = True 
+        else:
+            customerPreference[customerDrink] = False 
+    print (customerPreference)
+    return customerPreference #returns dictionary and assigns dict to another variable
 
-    bartenderQuestion4 = str(input(questions['sweet']))
-    if bartenderQuestion4[0] == 'y' or bartenderQuestion4[0] == 'Y':
-        customerDrink['sweet'] = True
-    else:
-        customerDrink['sweet'] = False
+def makeDrink(preference):
+    
+    for drink in ingredients:
+        if preference[drink] == True:
+            cocktail = random.choice(ingredients[drink])
+            print (cocktail)
+            
 
-    bartenderQuestion5 = str(input(questions['fruity']))
-    if bartenderQuestion5[0] == 'y' or bartenderQuestion5[0] == 'Y':
-        customerDrink['fruity'] = True
-    else:
-        customerDrink['fruity'] = False
+newPreference = askQuestions()
+makeDrink(newPreference)
     
-    bartenderQuestion6 = str(input(questions['mixed']))
-    if bartenderQuestion6[0] == 'y' or bartenderQuestion6[0] == 'Y':
-        customerDrink['mixed'] = True
-    else:
-        customerDrink['mixed'] = False
-        
-    bartenderQuestion7 = str(input(questions['cloudy']))
-    if bartenderQuestion7[0] == 'y' or bartenderQuestion7[0] == 'Y':
-        customerDrink['cloudy'] = True
-    else:
-        customerDrink['cloudy'] = False
-    
-    bartenderQuestion8 = str(input(questions['sickly']))
-    if bartenderQuestion8[0] == 'y' or bartenderQuestion8[0] == 'Y':
-        customerDrink['sickly'] = True
-    else:
-        customerDrink['sickly'] = False 
-    
-    bartenderQuestion9 = str(input(questions['magic']))
-    if bartenderQuestion9[0] == 'y' or bartenderQuestion9[0] == 'Y':
-        customerDrink['magic'] = True
-    else:
-        customerDrink['magic'] = False 
 
-
-        
-def makeDrink(customerDrink): #Assign the ingredient to whatever is TRUE from askQuestions function 
-    cocktails = {}
-    
-    #if customerDrink['strong'] == True:  
-     #   print(random.choice(ingredients['strong']))  -- why can't this work??, can I not do this without using Cocktails {}, why do I need to create a new dictionary
-     
-    if customerDrink['strong'] == True:
-        cocktails['strong'] = random.choice(ingredients['strong'])
-        
-    if customerDrink['salty'] == True:
-        cocktails['salty'] = random.choice(ingredients['salty'])
-     
-    if customerDrink['bitter'] == True:
-        cocktails['bitter'] = random.choice(ingredients['bitter'])
-        
-    if customerDrink['sweet'] == True:
-        cocktails['sweet'] = random.choice(ingredients['sweet']) 
-    
-    if customerDrink['fruity'] == True:
-        cocktails['fruity'] = random.choice(ingredients['fruity']) 
-        
-    if customerDrink['mixed'] == True:
-        cocktails['mixed'] = random.choice(ingredients['mixed']) 
-    
-    if customerDrink['cloudy'] == True:
-        cocktails['cloudy'] = random.choice(ingredients['cloudy']) 
-        
-    if customerDrink['sickly'] == True:
-        cocktails['sickly'] = random.choice(ingredients['sickly']) 
-        
-    if customerDrink['magic'] == True:
-        cocktails['magic'] = random.choice(ingredients['magic']) 
-        
-
-if __name__ == '__main__':
-    
-    # makeDrink(askQuestions()) -- literally passing the preferences into making drink
-    customerChoice = askQuestions()
-    bartenderMakes = makeDrink(customerChoice)
-    for order in bartenderMakes:
-        print (drink) 
     
     
     
